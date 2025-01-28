@@ -32,8 +32,7 @@ const About = () => {
             </p>
             <p className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
               When I'm not coding, you'll probably find me at the basketball court, trying new tricks on my skateboard, 
-              or exploring Boston's music scene. I believe the best ideas come when you combine different perspectives 
-              and experiences.
+              or exploring Boston's music scene.
             </p>
           </div>
 

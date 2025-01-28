@@ -11,7 +11,7 @@ const Hero = () => {
               Andrew Young.
             </h1>
             <h2 className="text-4xl font-medium text-gray-900 dark:text-gray-200 mt-2">
-              Building things I love
+              Building things I love in MA
             </h2>
           </div>
 
