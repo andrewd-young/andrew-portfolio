@@ -1,11 +1,11 @@
 import React from 'react';
 
-const Projects = () => {
+function Projects() {
   const projects = [
     {
       id: "soundcoven",
       title: "Sound Coven",
-      description: "Building a platform that connects student musicians with industry professionals for mentorship and career opportunities in the Boston area. Currently in private beta with launch planned for Spring 2025.",
+      description: "Building a platform that connects student musicians with industry professionals for mentorship and career opportunities in the Boston area. Currently in private beta with launch planned for Fall 2024.",
       technologies: "React, Tailwind, Vercel, Supabase PostgreSQL, SQL, Figma",
       period: "Oct 2023 - Present",
       link: "https://soundcoven.com"
@@ -27,14 +27,16 @@ const Projects = () => {
   ];
 
   return (
-    <div id="projects" className="w-full min-h-screen bg-gray-100 dark:bg-gray-800 py-16 px-4">
-      <div className="max-w-[1000px] mx-auto">
-        <h2 className="text-4xl font-bold text-center mb-12 text-gray-900 dark:text-white">Things I've Built</h2>
-        <div className="flex flex-col gap-8">
+    <section className="section" id="projects">
+      <div className="max-w-6xl mx-auto">
+        <h2 className="text-4xl font-bold mb-12 text-center">
+            My Projects
+        </h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {projects.map((project) => (
             <div key={project.id} 
                  id={project.id}
-                 className="bg-white dark:bg-gray-700 p-8 rounded-lg shadow-lg hover:shadow-xl transition-shadow">
+                 className="project-card bg-white dark:bg-gray-700 p-8 rounded-lg shadow-lg hover:shadow-xl transition-shadow">
               <div className="flex justify-between items-start mb-4">
                 <h3 className="text-2xl font-bold text-gray-900 dark:text-white">
                   {project.link ? (
@@ -61,8 +63,8 @@ const Projects = () => {
           ))}
         </div>
       </div>
-    </div>
+    </section>
   );
-};
+}
 
 export default Projects; 
