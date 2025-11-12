@@ -1,15 +1,15 @@
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap");
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
-  --primary: #2A2A72;
-  --secondary: #009FFD;
-  --accent: #FF2E63;
-  --background: #1A1A2E;
-  --text: #FFFFFF;
+  --primary: #2a2a72;
+  --secondary: #009ffd;
+  --accent: #ff2e63;
+  --background: #1a1a2e;
+  --text: #ffffff;
   --gradient: linear-gradient(135deg, var(--primary), var(--secondary));
 }
 
@@ -23,16 +23,6 @@ body {
   position: relative;
   overflow: hidden;
   padding: 4rem 2rem;
-}
-
-.section::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 1px;
-  background: var(--gradient);
 }
 
 .project-card {
@@ -70,11 +60,25 @@ body {
 }
 
 @keyframes float {
-  0% { transform: translateY(0px); }
-  50% { transform: translateY(-10px); }
-  100% { transform: translateY(0px); }
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
 }
 
 .skill-icon {
   animation: float 3s ease-in-out infinite;
-} 
+}
+
+/* Wavy blue underline on hover for normal links, but not for button-like links */
+a:not(.button):not(.btn):not(.px-4):not(.py-2):hover {
+  text-decoration-line: underline;
+  text-decoration-style: wavy;
+  text-underline-offset: 2px;
+  color: inherit;
+}

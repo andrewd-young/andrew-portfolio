@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useEffect, useState } from 'react';
+import React, { createContext, useContext, useEffect, useState } from "react";
 
 const ThemeContext = createContext();
 
@@ -11,12 +11,12 @@ export const ThemeProvider = ({ children }) => {
 
   useEffect(() => {
     // Check system preference
-    if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+    if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
       setDarkMode(true);
     }
 
     // Add listener for system theme changes
-    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+    const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
     const handleChange = (e) => setDarkMode(e.matches);
     mediaQuery.addListener(handleChange);
 
@@ -25,9 +25,9 @@ export const ThemeProvider = ({ children }) => {
 
   useEffect(() => {
     if (darkMode) {
-      document.documentElement.classList.add('dark');
+      document.documentElement.classList.add("dark");
     } else {
-      document.documentElement.classList.remove('dark');
+      document.documentElement.classList.remove("dark");
     }
   }, [darkMode]);
 
@@ -40,4 +40,4 @@ export const ThemeProvider = ({ children }) => {
       {children}
     </ThemeContext.Provider>
   );
-}; 
+};
