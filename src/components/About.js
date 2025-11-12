@@ -1,6 +1,28 @@
-import React from "react";
+import React, { useRef, useEffect } from "react";
+import { gsap } from "gsap";
 
 const About = () => {
+  const aboutRef = useRef(null);
+
+  useEffect(() => {
+    const el = aboutRef.current;
+    if (!el) return;
+    gsap.fromTo(
+      el,
+      { autoAlpha: 0, y: 40 },
+      {
+        autoAlpha: 1,
+        y: 0,
+        duration: 1.1,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: el,
+          start: "top 80%",
+          toggleActions: "play none none none",
+        },
+      }
+    );
+  }, []);
   const technicalSkills = [
     "JavaScript/TypeScript",
     "React/Next.js",
@@ -24,7 +46,7 @@ const About = () => {
   ];
 
   return (
-    <section className="section" id="about">
+    <section className="section" id="about" ref={aboutRef}>
       <div className="max-w-6xl mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
           <div>
