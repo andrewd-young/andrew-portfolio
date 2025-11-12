@@ -1,12 +1,31 @@
-import React, { createContext, useContext, useEffect, useState } from "react";
+import React, {
+  createContext,
+  useContext,
+  useEffect,
+  useState,
+  ReactNode,
+} from "react";
 
-const ThemeContext = createContext();
-
-export const useTheme = () => {
-  return useContext(ThemeContext);
+type ThemeContextType = {
+  darkMode: boolean;
+  toggleDarkMode: () => void;
 };
 
-export const ThemeProvider = ({ children }) => {
+const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
+
+export const useTheme = () => {
+  const context = useContext(ThemeContext);
+  if (!context) {
+    throw new Error("useTheme must be used within a ThemeProvider");
+  }
+  return context;
+};
+
+interface ThemeProviderProps {
+  children: ReactNode;
+}
+
+export const ThemeProvider = ({ children }: ThemeProviderProps) => {
   const [darkMode, setDarkMode] = useState(false);
 
   useEffect(() => {
@@ -17,10 +36,10 @@ export const ThemeProvider = ({ children }) => {
 
     // Add listener for system theme changes
     const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
-    const handleChange = (e) => setDarkMode(e.matches);
-    mediaQuery.addListener(handleChange);
+    const handleChange = (e: MediaQueryListEvent) => setDarkMode(e.matches);
+    mediaQuery.addEventListener("change", handleChange);
 
-    return () => mediaQuery.removeListener(handleChange);
+    return () => mediaQuery.removeEventListener("change", handleChange);
   }, []);
 
   useEffect(() => {

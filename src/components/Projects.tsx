@@ -1,9 +1,19 @@
 import React, { useRef, useEffect, useState } from "react";
 import { gsap } from "gsap";
 
-function Projects() {
-  const cardRefs = useRef([]);
-  const [hoveredIdx, setHoveredIdx] = useState(null);
+type Project = {
+  id: string;
+  title: string;
+  description: string;
+  technologies: string;
+  period: string;
+  link?: string;
+  details?: string;
+};
+
+const Projects: React.FC = () => {
+  const cardRefs = useRef<Array<HTMLDivElement | null>>([]);
+  const [hoveredIdx, setHoveredIdx] = useState<number | null>(null);
 
   useEffect(() => {
     cardRefs.current.forEach((card, idx) => {
@@ -30,13 +40,14 @@ function Projects() {
       };
       card.addEventListener("mouseenter", onEnter);
       card.addEventListener("mouseleave", onLeave);
+      // Cleanup function for each card
       return () => {
         card.removeEventListener("mouseenter", onEnter);
         card.removeEventListener("mouseleave", onLeave);
       };
     });
   }, []);
-  const projects = [
+  const projects: Project[] = [
     {
       id: "soundcoven",
       title: "Sound Coven",
@@ -81,7 +92,9 @@ function Projects() {
               <div
                 key={project.id}
                 id={project.id}
-                ref={(el) => (cardRefs.current[idx] = el)}
+                ref={(el: HTMLDivElement | null) => {
+                  cardRefs.current[idx] = el;
+                }}
                 className="project-card bg-white dark:bg-gray-700 p-8 rounded-lg shadow-lg transition-shadow cursor-pointer"
                 style={{
                   willChange: "transform",
@@ -144,6 +157,6 @@ function Projects() {
       </div>
     </section>
   );
-}
+};
 
 export default Projects;
